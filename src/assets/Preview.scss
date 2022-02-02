@@ -1,0 +1,15 @@
+
+.preview{
+    margin: 20px;
+    border: solid black 1px;
+    size: 8in 11.5in portrait;
+    .cvHeader{
+        display:flex;
+        flex-flow: column;
+        align-items: center;
+        border-bottom: solid black 1px;
+        margin-left: 20px;
+        margin-right: 20px;
+        margin-bottom: 10px;
+    }
+}
