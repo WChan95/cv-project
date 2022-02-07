@@ -46,7 +46,8 @@ class App extends Component {
             location: "Cupertino, CA",
             startDate: "Mar 2020",
             endDate: "Present",
-            roleDescription: "I built stuff for Apple;\nI built stuff for Apple 2;I Built stuff for apple 3",
+            roleDescription:
+              "I built stuff for Apple;\nI built stuff for Apple 2;I Built stuff for apple 3",
           },
         ],
       },
@@ -59,10 +60,20 @@ class App extends Component {
     }));
   };
 
-  handleEducation = (childData) => {
+  handleEducation = (event) => {
+    const { name, value } = event.target;
     this.setState((prevState) => ({
-      education: { ...prevState.education.schools, ...childData },
+      education: {
+        school: {
+          ...prevState.education.school,
+          [name]: value,
+        },
+      },
     }));
+  };
+
+  submitEducation = (event) => {
+    event.preventDefault();
   };
 
   handleExperience = (childData) => {
@@ -80,7 +91,7 @@ class App extends Component {
             <Personal parentCallback={this.handlePersonal} />
           </div>
 
-          <Education parentCallback={this.handleEducation} />
+          <Education eduChange={this.handleEducation} eduSubmit={this.submitEducation} />
           <Experience parentCallback={this.handleExperience} />
           <TechnicalSkills />
         </div>

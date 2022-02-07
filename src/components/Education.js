@@ -7,38 +7,28 @@ import "../assets/Forms.scss";
 class Education extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      school: { schoolName: "", degree: "", dateGraduate: "", id: uniqid() },
-      schools: [],
-    };
   }
 
   //lets make it so that it can assign ids
-  handleChange = (event) => {
-    const { name, value } = event.target;
-    this.setState((prevState) => ({
-      school: { ...prevState.school, [name]: value },
-    }));
-  };
 
-  handleParent = (event) => {
-    event.preventDefault();
-    this.setState({
-      schools: this.state.schools.concat(this.state.school),
-      school: { schoolName: "", degree: "", dateGraduate: "", id: uniqid() },
-    });
+  handleChange =(event) =>{
+    this.props.eduChange(event);
+  }
 
-    clearAllInputs(); //clears all input forms after submittal
-    this.props.parentCallback({ ...this.state });
-  };
+  handleSubmit = (event) => {
+    
+    this.props.eduSubmit(event);
+  }
+
 
   //lets start with a thought experiment (or rather a streamline of thoughts)
   //when initialzing, the state is initially empty
   //right now it relies on the name of the input elements to create properties for
   render() {
+
     return (
       <div>
-        <form className="forms" onSubmit={this.handleParent}>
+        <form className="forms" onSubmit = {this.handleSubmit}>
           <h3>Education</h3>
           <label>University or School Name</label>
           <input

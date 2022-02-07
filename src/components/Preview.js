@@ -21,7 +21,7 @@ class Preview extends Component {
             <div>{`${this.props.personal.phone} | ${this.props.personal.email}`}</div>
           </div>
         </div>
-        <SchoolList schools={schools} />
+{/*         <SchoolList schools={schools} /> */}
         <WorkList jobs={work} />
       </div>
     );
