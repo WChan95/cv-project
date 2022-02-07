@@ -1,8 +1,12 @@
 import React, { Component, useState } from "react";
-import Personal from "./Personal";
-import Preview from "./Preview";
+
 import "../assets/App.scss";
 import reactDom from "react-dom";
+
+import Personal from "./Personal";
+import Education from "./Education";
+import Experience from "./Experience";
+import Preview from "./Preview";
 
 class App extends Component {
   constructor(props) {
@@ -13,24 +17,48 @@ class App extends Component {
         lastName: "Last Name",
         email: "yourEmail@calstate.edu",
         phone: "714-555-2020",
-        address: "0120 Your Street, Your City, CA 99999",
-        title: "",
+        address: "0120 Your Street, Your City, [CA 99999",
+      },
+      education: {
+        schools: [
+          {
+            schoolName: "University of South Florida",
+            degree: "BS Political Science",
+            dateGraduated: "May 2020",
+            id: "0",
+          },
+        ],
+      },
+      experience: {
+        jobs: [{}],
       },
     };
   }
-
-  handleChild = (childData) => {
-    this.setState(...childData)
-
+  //schoolName: "California State University, Fullerton", degree:"Bachelor of Science, Computer Science", dateGraduated:"May 2010"
+  handlePersonal = (childData) => {
+    this.setState((prevState) => ({
+      personal: { ...prevState.personal, ...childData },
+    }));
   };
 
-  getPrevPersonal = (prevState) => {};
+  handleEducation = (childData) => {
+    this.setState((prevState) => ({
+      education: { ...prevState.education.schools, ...childData },
+    }));
+  };
 
+  handleExperience = (childData) => {
+    this.setState((prevState) => ({
+      experience: { ...prevState.experience.jobs, ...childData },
+    }));
+  }; 
   render() {
     return (
       <div className="app">
         <div>
-          <Personal parentCallback={this.handleChild} />
+          <Personal parentCallback={this.handlePersonal} />
+          <Education parentCallback={this.handleEducation} />
+          <Experience parentCallback={this.handleExperience} />
         </div>
         <div>
           <Preview {...this.state} />

@@ -8,4 +8,7 @@ export function handleTextChange(event){
     this.props.parentCallback({ ...this.state });
   }
 
-  
+
+  export const clearAllInputs = () =>{
+    Array.from(document.querySelectorAll("input")).forEach((input) => (input.value = ""));
+  }
