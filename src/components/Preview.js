@@ -11,6 +11,7 @@ class Preview extends Component {
     //console.log(this.props.personal)
 
     const schools = this.props.education.schools;
+    const work = this.props.experience.jobs;
     return (
       <div className="preview">
         <div className="cvHeader">
@@ -21,6 +22,7 @@ class Preview extends Component {
           </div>
         </div>
         <SchoolList schools={schools} />
+        <WorkList jobs={work} />
       </div>
     );
   }
@@ -34,12 +36,40 @@ function SchoolList(props) {
         return (
           <li key={school.id}>
             <div className="education">
-              <h3>{school.schoolName}</h3>
+              <h4>{school.schoolName}</h4>
               <div className="dateDegree">
                 <span>{school.degree}</span>
                 <span>{school.dateGraduated}</span>
               </div>
             </div>
+          </li>
+        );
+      })}
+    </ul>
+  );
+}
+
+function WorkList(props) {
+  const { jobs } = props;
+  const parseRole = () => {
+
+  }
+  return (
+    <ul className="cvExperience">
+      {jobs.map((job) => {
+        job.roleDescription.split(";");
+        return (
+          <li>
+            <div className="job_date">
+              <span>{job.jobTitle}</span>
+              <span>
+                {job.startDate} - {job.endDate}
+              </span>
+            </div>
+            <div>{job.company}</div>
+            <ul>
+              <li>{job.roleDescription}</li>
+            </ul>
           </li>
         );
       })}

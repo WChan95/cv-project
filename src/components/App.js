@@ -2,10 +2,12 @@ import React, { Component, useState } from "react";
 
 import "../assets/App.scss";
 import reactDom from "react-dom";
+import uniqid from "uniqid";
 
 import Personal from "./Personal";
 import Education from "./Education";
 import Experience from "./Experience";
+import TechnicalSkills from "./TechnicalSkills";
 import Preview from "./Preview";
 
 class App extends Component {
@@ -20,21 +22,37 @@ class App extends Component {
         address: "0120 Your Street, Your City, [CA 99999",
       },
       education: {
+        school: {
+          schoolName: "",
+          degree: "",
+          dateGraduated: "",
+          id: uniqid(),
+        },
         schools: [
           {
-            schoolName: "University of South Florida",
-            degree: "BS Political Science",
+            schoolName: "University of Somewhere, Elsewhere",
+            degree: "BS Information Systems",
             dateGraduated: "May 2020",
-            id: "0",
+            id: uniqid(),
           },
         ],
       },
       experience: {
-        jobs: [{}],
+        job: { jobTitle: "" },
+        jobs: [
+          {
+            jobTitle: "Software Engineer",
+            company: "Apple",
+            location: "Cupertino, CA",
+            startDate: "Mar 2020",
+            endDate: "Present",
+            roleDescription: "I built stuff for Apple;\nI built stuff for Apple 2;I Built stuff for apple 3",
+          },
+        ],
       },
     };
   }
-  //schoolName: "California State University, Fullerton", degree:"Bachelor of Science, Computer Science", dateGraduated:"May 2010"
+  //schoolName: "California State University, Fullerston", degree:"Bachelor of Science, Computer Science", dateGraduated:"May 2010"
   handlePersonal = (childData) => {
     this.setState((prevState) => ({
       personal: { ...prevState.personal, ...childData },
@@ -51,14 +69,20 @@ class App extends Component {
     this.setState((prevState) => ({
       experience: { ...prevState.experience.jobs, ...childData },
     }));
-  }; 
+  };
+
   render() {
     return (
       <div className="app">
         <div>
-          <Personal parentCallback={this.handlePersonal} />
+          <div>
+            <button>Show/Hide</button>
+            <Personal parentCallback={this.handlePersonal} />
+          </div>
+
           <Education parentCallback={this.handleEducation} />
           <Experience parentCallback={this.handleExperience} />
+          <TechnicalSkills />
         </div>
         <div>
           <Preview {...this.state} />

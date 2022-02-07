@@ -40,28 +40,22 @@ class Education extends Component {
       <div>
         <form className="forms" onSubmit={this.handleParent}>
           <h3>Education</h3>
-          <label>
-            <span>University or School Name</span>
-            <input
-              type="text"
-              placeholder="School Name"
-              name="schoolName"
-              onChange={this.handleChange}
-            />
-          </label>
-          <label>
-            <span>Date of Graduation</span>
-            <input
-              type="text"
-              placeholder="Date Graduated e.g. May 2014"
-              name="dateGraduated"
-              onChange={this.handleChange}
-            />
-          </label>
-          <label>
-            <span>Degree Earned</span>
-            <input type="text" placeholder="Degree" name="degree" onChange={this.handleChange} />
-          </label>
+          <label>University or School Name</label>
+          <input
+            type="text"
+            placeholder="School Name"
+            name="schoolName"
+            onChange={this.handleChange}
+          />
+          <label>Date of Graduation</label>
+          <input
+            type="text"
+            placeholder="Date Graduated e.g. May 2014"
+            name="dateGraduated"
+            onChange={this.handleChange}
+          />
+          <label>Degree Earned</label>
+          <input type="text" placeholder="Degree" name="degree" onChange={this.handleChange} />
           <button>Add Education</button>
         </form>
       </div>
