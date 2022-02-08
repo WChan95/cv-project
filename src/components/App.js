@@ -28,14 +28,7 @@ class App extends Component {
           dateGraduated: "",
           id: uniqid(),
         },
-        schools: [
-          {
-            schoolName: "University of Somewhere, Elsewhere",
-            degree: "BS Information Systems",
-            dateGraduated: "May 2020",
-            id: uniqid(),
-          },
-        ],
+        schools: [],
       },
       experience: {
         job: { jobTitle: "" },
@@ -64,6 +57,7 @@ class App extends Component {
     const { name, value } = event.target;
     this.setState((prevState) => ({
       education: {
+        ...prevState.education,
         school: {
           ...prevState.education.school,
           [name]: value,
@@ -74,6 +68,23 @@ class App extends Component {
 
   submitEducation = (event) => {
     event.preventDefault();
+
+    this.setState((prevState) => ({
+      education: {
+        ...prevState.education,
+        schools: [...prevState.education.schools, this.state.education.school],
+      },
+    }));
+    /*     this.setState({education:{
+      schools: {schools}
+    }}) */
+
+    /*   this.setState((prevState) => ({
+      education: {
+        ...prevState.education.schools,
+        school,
+      },
+    })); */ //this doesn't work
   };
 
   handleExperience = (childData) => {
