@@ -3,7 +3,6 @@ import React, { Component, useState } from "react";
 import "../assets/App.scss";
 import reactDom from "react-dom";
 import uniqid from "uniqid";
-
 import Personal from "./Personal";
 import Education from "./Education";
 import Experience from "./Experience";
@@ -44,12 +43,18 @@ class App extends Component {
           },
         ],
       },
+      technicalSkills: {
+        languages: "",
+        frameworks_libraries: "",
+        tools: "",
+      },
     };
   }
   //schoolName: "California State University, Fullerston", degree:"Bachelor of Science, Computer Science", dateGraduated:"May 2010"
-  handlePersonal = (childData) => {
+  handlePersonal = (event) => {
+    const { name, value } = event.target;
     this.setState((prevState) => ({
-      personal: { ...prevState.personal, ...childData },
+      personal: { ...prevState.personal, [name]: value },
     }));
   };
 
@@ -74,7 +79,7 @@ class App extends Component {
         ...prevState.education,
         schools: [...prevState.education.schools, this.state.education.school],
       },
-    }));
+    })); //this actually works
     /*     this.setState({education:{
       schools: {schools}
     }}) */
@@ -87,11 +92,29 @@ class App extends Component {
     })); */ //this doesn't work
   };
 
-  handleExperience = (childData) => {
+  handleExperience = (event) => {
+    const { name, value } = event.target;
     this.setState((prevState) => ({
-      experience: { ...prevState.experience.jobs, ...childData },
+      experience: { job: { ...prevState.experience.job, [name]: value } },
     }));
   };
+
+  submitExperience = (event) => {
+    event.preventDefault();
+    this.setState((prevState) => ({
+      experience: {
+        ...prevState.experience,
+        jobs: [...prevState.experience.jobs, this.state.experience.job],
+      },
+    }));
+  };
+
+  handleTechnical = (event) => {
+    const {name, value} = event.target;
+    this.setState(prevState => ({
+      technicalSkills:{...prevState.technicalSkills, [name]: value}
+    }))
+  }
 
   render() {
     return (
@@ -99,12 +122,12 @@ class App extends Component {
         <div>
           <div>
             <button>Show/Hide</button>
-            <Personal parentCallback={this.handlePersonal} />
+            <Personal personalChange={this.handlePersonal} />
           </div>
 
           <Education eduChange={this.handleEducation} eduSubmit={this.submitEducation} />
-          <Experience parentCallback={this.handleExperience} />
-          <TechnicalSkills />
+          <Experience expChange={this.handleExperience} expSubmit={this.submitExperience} />
+          <TechnicalSkills technicalChange={this.handleTechnical} />
         </div>
         <div>
           <Preview {...this.state} />

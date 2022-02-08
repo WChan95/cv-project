@@ -6,28 +6,15 @@ import "../assets/Forms.scss";
 class Experience extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      job: { jobTitle: "", location: "", startDate: "", endDate: "", roleDescription: "" },
-      jobs: [],
-    };
   }
 
   handleChange = (event) => {
-    const { name, value } = event.target;
-    this.setState((prevState) => ({
-      job: { ...prevState.job, [name]: value },
-    }));
+    this.props.expChange(event);
   };
   handleParent = (event) => {
     event.preventDefault();
-    this.setState({
-      jobs: this.state.jobs.concat(this.state.job),
-      job: { jobTitle: "", company:"", location: "", startDate: "", endDate: "", roleDescription: "" },
-    });
-    clearAllInputs(); //clears all input forms after submittal
-    this.props.parentCallback({ ...this.state });
+    this.props.expSubmit(event);
   };
-
 
   render() {
     return (
@@ -41,12 +28,7 @@ class Experience extends Component {
           onChange={this.handleChange}
         />
         <label>Company</label>
-        <input
-          type="text"
-          placeholder="Apple"
-          name="company"
-          onChange={this.handleChange}
-        />
+        <input type="text" placeholder="Apple" name="company" onChange={this.handleChange} />
 
         <label>City, State </label>
         <input
@@ -68,7 +50,7 @@ class Experience extends Component {
           onChange={this.handleChange}
         />
         <p>Note, use ";" to divide highlights in role experience</p>
-        
+
         <button>Submit</button>
       </form>
     );
