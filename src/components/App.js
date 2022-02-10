@@ -11,6 +11,7 @@ import Preview from "./Preview";
 
 class App extends Component {
   constructor(props) {
+    //This is just a temporary initial state to begin formatting the resume
     super(props);
     this.state = {
       personal: {
@@ -22,31 +23,40 @@ class App extends Component {
       },
       education: {
         school: {
-          schoolName: "",
-          degree: "",
-          dateGraduated: "",
+          schoolName: "University of California, Riverside",
+          degree: "B.S. Information Systems",
+          dateGraduated: "May 2016",
           id: uniqid(),
         },
-        schools: [],
+        schools: [
+          {
+            schoolName: "University of California, Riverside",
+            degree: "B.S. Information Systems",
+            dateGraduated: "May 2016",
+            id: uniqid(),
+          },
+        ],
       },
       experience: {
         job: { jobTitle: "" },
         jobs: [
           {
-            jobTitle: "Software Engineer",
-            company: "Apple",
-            location: "Cupertino, CA",
-            startDate: "Mar 2020",
-            endDate: "Present",
+            id: "",
+            jobTitle: "",
+            company: "",
+            location: "",
+            startDate: "",
+            endDate: "",
             roleDescription:
-              "I built stuff for Apple;\nI built stuff for Apple 2;I Built stuff for apple 3",
+              "",
           },
+
         ],
       },
       technicalSkills: {
-        languages: "",
-        frameworks_libraries: "",
-        tools: "",
+        languages: "JavaScript",
+        frameworks_libraries: "React.js",
+        tools: "git, babel, Webpack",
       },
     };
   }
@@ -95,26 +105,44 @@ class App extends Component {
   handleExperience = (event) => {
     const { name, value } = event.target;
     this.setState((prevState) => ({
-      experience: { job: { ...prevState.experience.job, [name]: value } },
+      experience: {
+        ...prevState.experience,
+        jobs: prevState.experience.jobs.map((job) => {
+          if (job.id === event.target.id) {
+            return { ...job, [name]: value };
+          }
+          return job;
+        }),
+      },
     }));
   };
 
-  submitExperience = (event) => {
-    event.preventDefault();
+  handleAddExperience = (event) => {
+
+    this.setState(prevState => ({
+      experience:{...prevState.experience, jobs:[...prevState.experience.jobs,{id:uniqid()} ]}
+    }))
+
+  }
+
+
+  handleDelete = (event) => {
+    //this.state.experience.jobs.splice(event,1)
+    const newArr = this.state.experience.jobs.filter((job) => job.id != event.id);
     this.setState((prevState) => ({
       experience: {
         ...prevState.experience,
-        jobs: [...prevState.experience.jobs, this.state.experience.job],
+        jobs: [...newArr],
       },
     }));
   };
 
   handleTechnical = (event) => {
-    const {name, value} = event.target;
-    this.setState(prevState => ({
-      technicalSkills:{...prevState.technicalSkills, [name]: value}
-    }))
-  }
+    const { name, value } = event.target;
+    this.setState((prevState) => ({
+      technicalSkills: { ...prevState.technicalSkills, [name]: value },
+    }));
+  };
 
   render() {
     return (
@@ -126,11 +154,16 @@ class App extends Component {
           </div>
 
           <Education eduChange={this.handleEducation} eduSubmit={this.submitEducation} />
-          <Experience expChange={this.handleExperience} expSubmit={this.submitExperience} />
+          <Experience
+            expDelete={this.handleDelete}
+            expChange={this.handleExperience}
+            expAdd={this.handleAddExperience}
+            {...this.state.experience}
+          />
           <TechnicalSkills technicalChange={this.handleTechnical} />
         </div>
         <div>
-          <Preview {...this.state} />
+          <Preview {...this.state} handleDelete={this.handleDelete} />
         </div>
       </div>
     );

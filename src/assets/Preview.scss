@@ -1,15 +1,96 @@
+*,
+*:before:not(i),
+*:after:not(i),
+*:not(i) {
+  box-sizing: border-box;
+}
 
-.preview{
-    margin: 20px;
-    border: solid black 1px;
-    size: 8in 11.5in portrait;
-    .cvHeader{
-        display:flex;
-        flex-flow: column;
-        align-items: center;
-        border-bottom: solid black 1px;
-        margin-left: 20px;
-        margin-right: 20px;
-        margin-bottom: 10px;
+li {
+  list-style: none;
+}
+
+.preview {
+  margin: 20px;
+  border: solid black 1px;
+  width: 8.5in;
+  //height: 11.5in;
+
+  .cvHeader {
+    @extend .sections;
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+  }
+
+  .cvEducation {
+    @extend .sections;
+
+    .education {
+      display: flex;
+      flex-flow: column;
+      justify-content: center;
+      h4 {
+        padding: 0;
+        margin: 5px 0;
+      }
+
+      .dateDegree {
+        @extend .education;
+        flex-flow: row;
+        justify-content: space-between;
+      }
     }
+  }
+
+  .cvExperience {
+    @extend .sections;
+    .job {
+      display: grid;
+      grid-template-columns: 1fr;
+      grid-template-rows: repeat(2, 3);
+      grid-column-gap: 0px;
+      grid-row-gap: 0px;
+      margin-top: 10px;
+      margin-bottom: 10px;
+    }
+    .job_date {
+      display: flex;
+      flex-flow: row;
+      justify-content: space-between;
+      align-items: center;
+      max-height: 20px;
+    }
+    .job_company {
+      font-weight: bold;
+      font-size: 16px;
+    }
+    .job_Role {
+      list-style: disc;
+      margin-left: 0;
+    }
+  }
+
+  .cvTechnicalSkills {
+    li {
+      font-weight: normal;
+      font-size: 16px;
+    }
+    span{
+      font-size: 12px;
+    }
+  }
+}
+
+.sections {
+  margin-left: 20px;
+  margin-right: 20px;
+  margin-bottom: 10px;
+  padding: 0px 10px;
+}
+
+.sectionHeadings {
+  font-size: 20px;
+  font-weight: bold;
+  width: 100%;
+  border-bottom: black 1px solid;
 }

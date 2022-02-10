@@ -1,0 +1,67 @@
+*,
+*:before:not(i),
+*:after:not(i),
+*:not(i) {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+li {
+  list-style: none;
+}
+
+.preview {
+  margin: 20px;
+  border: solid black 1px;
+  width: 8in;
+  height: 11.5in;
+}
+
+.preview .cvHeader {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: column;
+          flex-flow: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.preview .cvEducation .education, .preview .cvEducation .education .dateDegree {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: column;
+          flex-flow: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.preview .cvEducation .education h3, .preview .cvEducation .education .dateDegree h3 {
+  padding: 0;
+  margin: 5px 0;
+}
+
+.preview .cvEducation .education .dateDegree {
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: row;
+          flex-flow: row;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.sections, .preview .cvHeader, .preview .cvEducation {
+  border-bottom: solid black 1px;
+  margin-left: 20px;
+  margin-right: 20px;
+  margin-bottom: 10px;
+}
+/*# sourceMappingURL=Preview.css.map */

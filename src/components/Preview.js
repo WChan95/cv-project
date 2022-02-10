@@ -1,4 +1,6 @@
+import { render } from "@testing-library/react";
 import React, { Component } from "react";
+import uniqid from "uniqid";
 import "../assets/Preview.scss";
 
 class Preview extends Component {
@@ -6,12 +8,16 @@ class Preview extends Component {
     super(props);
     this.state = { ...this.props };
   }
-
+  handleDelete = (event) => {
+    this.props.handleDelete(event);
+  };
   render() {
     //console.log(this.props.personal)
 
     const schools = this.props.education.schools;
-    const work = this.props.experience.jobs;
+    const jobs = this.props.experience.jobs;
+    const skills = this.props.technicalSkills;
+
     return (
       <div className="preview">
         <div className="cvHeader">
@@ -21,8 +27,9 @@ class Preview extends Component {
             <div>{`${this.props.personal.phone} | ${this.props.personal.email}`}</div>
           </div>
         </div>
-{/*         <SchoolList schools={schools} /> */}
-        <WorkList jobs={work} />
+        <SchoolList schools={schools} />
+        {/* <WorkList jobs={this.props.experience.jobs} /> */}
+        <TechnicalSkillsList skills={skills}/>
       </div>
     );
   }
@@ -32,6 +39,9 @@ function SchoolList(props) {
   const { schools } = props;
   return (
     <ul className="cvEducation">
+      <div className="sectionHeadings">
+        <span>Education</span>
+      </div>
       {schools.map((school) => {
         return (
           <li key={school.id}>
@@ -51,28 +61,55 @@ function SchoolList(props) {
 
 function WorkList(props) {
   const { jobs } = props;
-  const parseRole = () => {
-
-  }
   return (
     <ul className="cvExperience">
+      <div className="sectionHeadings">
+        <span>Experience</span>
+      </div>
+
       {jobs.map((job) => {
-        job.roleDescription.split(";");
+        const jobSplit = job.roleDescription.split(";");
         return (
-          <li>
+          <li className="job" key={job.id}>
+            <button>Test Delete</button>
             <div className="job_date">
-              <span>{job.jobTitle}</span>
+              <h4>
+                {job.company}, {job.location}
+              </h4>
               <span>
                 {job.startDate} - {job.endDate}
               </span>
             </div>
-            <div>{job.company}</div>
+            <span className="job_company">{job.jobTitle}</span>
             <ul>
-              <li>{job.roleDescription}</li>
+              {jobSplit.map((role) => {
+                return <li className="job_Role">{role}</li>;
+              })}
             </ul>
           </li>
         );
       })}
+    </ul>
+  );
+}
+
+function TechnicalSkillsList(props) {
+  const { skills } = props;
+  return (
+    <ul className="cvTechnicalSkill">
+      <div className="sectionHeadings">
+        <span>Technical Skills</span>
+      </div>
+
+      <ul>
+        <li>
+          <span>Languages: {skills.languages}</span>
+        </li>
+        <li>
+          <span>Frameworks: {skills.frameworks_libraries}</span>
+        </li>
+        <li>Tools: {skills.tools}</li>
+      </ul>
     </ul>
   );
 }
