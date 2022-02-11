@@ -20,14 +20,9 @@ class App extends Component {
         email: "yourEmail@calstate.edu",
         phone: "714-555-2020",
         address: "0120 Your Street, Your City, [CA 99999",
+        isActive: "",
       },
       education: {
-        school: {
-          schoolName: "University of California, Riverside",
-          degree: "B.S. Information Systems",
-          dateGraduated: "May 2016",
-          id: uniqid(),
-        },
         schools: [
           {
             schoolName: "University of California, Riverside",
@@ -38,7 +33,6 @@ class App extends Component {
         ],
       },
       experience: {
-        job: { jobTitle: "" },
         jobs: [
           {
             id: "",
@@ -47,10 +41,8 @@ class App extends Component {
             location: "",
             startDate: "",
             endDate: "",
-            roleDescription:
-              "",
+            roleDescription: "",
           },
-
         ],
       },
       technicalSkills: {
@@ -60,6 +52,10 @@ class App extends Component {
       },
     };
   }
+
+  handleActive = (event) => {
+    console.log(event.target);
+  };
   //schoolName: "California State University, Fullerston", degree:"Bachelor of Science, Computer Science", dateGraduated:"May 2010"
   handlePersonal = (event) => {
     const { name, value } = event.target;
@@ -73,33 +69,34 @@ class App extends Component {
     this.setState((prevState) => ({
       education: {
         ...prevState.education,
-        school: {
-          ...prevState.education.school,
-          [name]: value,
-        },
+        schools: prevState.education.schools.map((school) => {
+          if (school.id === event.target.id) {
+            return { ...school, [name]: value };
+          }
+          return school;
+        }),
       },
     }));
   };
 
-  submitEducation = (event) => {
-    event.preventDefault();
-
+  handleAddEducation = (event) => {
     this.setState((prevState) => ({
       education: {
         ...prevState.education,
-        schools: [...prevState.education.schools, this.state.education.school],
+        schools: [...prevState.education.schools, { id: uniqid() }],
       },
-    })); //this actually works
-    /*     this.setState({education:{
-      schools: {schools}
-    }}) */
+    }));
+  };
 
-    /*   this.setState((prevState) => ({
-      education: {
-        ...prevState.education.schools,
-        school,
+  handleDeleteEducation = (event) => {
+    //this.state.experience.jobs.splice(event,1)
+    const newArr = this.state.education.schools.filter((school) => school.id != event.id);
+    this.setState((prevState) => ({
+      experience: {
+        ...prevState.experience,
+        jobs: [...newArr],
       },
-    })); */ //this doesn't work
+    }));
   };
 
   handleExperience = (event) => {
@@ -118,15 +115,15 @@ class App extends Component {
   };
 
   handleAddExperience = (event) => {
+    this.setState((prevState) => ({
+      experience: {
+        ...prevState.experience,
+        jobs: [...prevState.experience.jobs, { id: uniqid() }],
+      },
+    }));
+  };
 
-    this.setState(prevState => ({
-      experience:{...prevState.experience, jobs:[...prevState.experience.jobs,{id:uniqid()} ]}
-    }))
-
-  }
-
-
-  handleDelete = (event) => {
+  handleDeleteExperience = (event) => {
     //this.state.experience.jobs.splice(event,1)
     const newArr = this.state.experience.jobs.filter((job) => job.id != event.id);
     this.setState((prevState) => ({
@@ -147,24 +144,29 @@ class App extends Component {
   render() {
     return (
       <div className="app">
-        <div>
-          <div>
-            <button>Show/Hide</button>
-            <Personal personalChange={this.handlePersonal} />
-          </div>
-
-          <Education eduChange={this.handleEducation} eduSubmit={this.submitEducation} />
+        <header className = "Header">
+          <h1>Your Resume Generator</h1>
+        </header>
+        <div className = "Form">
+          <Personal personalChange={this.handlePersonal} toggleActive={this.handleActive} />
+          <Education
+            eduAdd={this.handleAddEducation}
+            eduChange={this.handleEducation}
+            eduDelete={this.handleDeleteEducation}
+            {...this.state.education}
+          />
           <Experience
-            expDelete={this.handleDelete}
+            expDelete={this.handleDeleteExperience}
             expChange={this.handleExperience}
             expAdd={this.handleAddExperience}
             {...this.state.experience}
           />
           <TechnicalSkills technicalChange={this.handleTechnical} />
         </div>
-        <div>
+        <div className="CV">
           <Preview {...this.state} handleDelete={this.handleDelete} />
         </div>
+        <footer className="Footer" >Your Footer Here</footer>
       </div>
     );
   }

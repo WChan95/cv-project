@@ -21,7 +21,7 @@ class Experience extends Component {
   };
   render() {
     return (
-      <div className="forms">
+      <div className="forms_container">
         {this.props.jobs.map((index) => {
           return (
             <form className="forms">
