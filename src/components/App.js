@@ -35,7 +35,7 @@ class App extends Component {
       experience: {
         jobs: [
           {
-            id: "",
+            id: "1",
             jobTitle: "",
             company: "",
             location: "",
@@ -90,7 +90,7 @@ class App extends Component {
 
   handleDeleteEducation = (event) => {
     //this.state.experience.jobs.splice(event,1)
-    const newArr = this.state.education.schools.filter((school) => school.id != event.id);
+    const newArr = this.state.education.schools.filter((school) => school.id !== event.id);
     this.setState((prevState) => ({
       experience: {
         ...prevState.experience,
@@ -118,7 +118,18 @@ class App extends Component {
     this.setState((prevState) => ({
       experience: {
         ...prevState.experience,
-        jobs: [...prevState.experience.jobs, { id: uniqid() }],
+        jobs: [
+          ...prevState.experience.jobs,
+          {
+            id: uniqid(),
+            jobTitle: "",
+            company: "",
+            location: "",
+            startDate: "",
+            endDate: "",
+            roleDescription: "",
+          },
+        ],
       },
     }));
   };
@@ -144,10 +155,10 @@ class App extends Component {
   render() {
     return (
       <div className="app">
-        <header className = "Header">
+        <header className="Header">
           <h1>Your Resume Generator</h1>
         </header>
-        <div className = "Form">
+        <div className="Form">
           <Personal personalChange={this.handlePersonal} toggleActive={this.handleActive} />
           <Education
             eduAdd={this.handleAddEducation}
@@ -166,7 +177,7 @@ class App extends Component {
         <div className="CV">
           <Preview {...this.state} handleDelete={this.handleDelete} />
         </div>
-        <footer className="Footer" >Your Footer Here</footer>
+        <footer className="Footer">Your Footer Here</footer>
       </div>
     );
   }

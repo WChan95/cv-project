@@ -7,6 +7,7 @@ class TechnicalSkills extends Component {
   }
   handleChange = (event) => {
     this.props.technicalChange(event);
+    this.state = {active: true};
   };
   render() {
     return (
@@ -34,8 +35,6 @@ class TechnicalSkills extends Component {
             placeholder="git, babel, Webpack, Docker, AWS"
             onChange={this.handleChange}
           />
-
-          <button>Submit</button>
         </form>
       </div>
     );

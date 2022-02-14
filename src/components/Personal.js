@@ -24,7 +24,7 @@ class Personal extends Component {
     return (
       <div className="forms_container">
         <div className = "head">
-          <span>Personal Information</span>
+          <h3>Personal Information</h3>
           <button type="Button" onClick={this.handleActive} className="show_hide">
             {this.state.active ? (
               <FontAwesomeIcon icon={faAnglesDown} />

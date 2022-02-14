@@ -28,8 +28,8 @@ class Preview extends Component {
           </div>
         </div>
         <SchoolList schools={schools} />
-        {/* <WorkList jobs={this.props.experience.jobs} /> */}
-        <TechnicalSkillsList skills={skills}/>
+        <WorkList jobs={jobs} />
+        <TechnicalSkillsList skills={skills} />
       </div>
     );
   }
@@ -66,12 +66,9 @@ function WorkList(props) {
       <div className="sectionHeadings">
         <span>Experience</span>
       </div>
-
       {jobs.map((job) => {
-        const jobSplit = job.roleDescription.split(";");
         return (
           <li className="job" key={job.id}>
-            <button>Test Delete</button>
             <div className="job_date">
               <h4>
                 {job.company}, {job.location}
@@ -82,7 +79,7 @@ function WorkList(props) {
             </div>
             <span className="job_company">{job.jobTitle}</span>
             <ul>
-              {jobSplit.map((role) => {
+              {job.roleDescription.split(";").map((role) => {
                 return <li className="job_Role">{role}</li>;
               })}
             </ul>
