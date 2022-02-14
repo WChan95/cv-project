@@ -1,5 +1,36 @@
+@import "./Variables.scss";
 
-.app{
-    display: grid;
-    grid-template-columns: 1fr 3fr;
+.app {
+  padding: 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  /*   grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr; */
+  gap: 0px 0px;
+  grid-template-areas:
+    "Header Header Header Header"
+    "Form CV CV CV"
+    "Form CV CV CV"
+    "Form CV CV CV"
+    "Form CV CV CV"
+    "Form CV CV CV"
+    "Footer Footer Footer Footer";
+  .Header {
+    grid-area: Header;
+
+    h1 {
+      font-size: 20px;
+      padding: 5px;
+      background-color: $header;
+    }
+  }
+  .Footer {
+    grid-area: Footer;
+  }
+  .Form {
+    grid-area: Form;
+    border-right: $border solid 1px;
+  }
+  .CV {
+    grid-area: CV;
+  }
 }
