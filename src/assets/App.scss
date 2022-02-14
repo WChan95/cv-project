@@ -1,7 +1,9 @@
 @import "./Variables.scss";
 
+
+
 .app {
-  padding: 0;
+  height: 100vh;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
   /*   grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr; */
@@ -14,6 +16,8 @@
     "Form CV CV CV"
     "Form CV CV CV"
     "Footer Footer Footer Footer";
+
+  background-color: $background;
   .Header {
     grid-area: Header;
 
@@ -28,7 +32,6 @@
   }
   .Form {
     grid-area: Form;
-    border-right: $border solid 1px;
   }
   .CV {
     grid-area: CV;

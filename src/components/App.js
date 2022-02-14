@@ -155,9 +155,9 @@ class App extends Component {
   render() {
     return (
       <div className="app">
-        <header className="Header">
+{/*         <header className="Header">
           <h1>Your Resume Generator</h1>
-        </header>
+        </header> */}
         <div className="Form">
           <Personal personalChange={this.handlePersonal} toggleActive={this.handleActive} />
           <Education
@@ -177,7 +177,7 @@ class App extends Component {
         <div className="CV">
           <Preview {...this.state} handleDelete={this.handleDelete} />
         </div>
-        <footer className="Footer">Your Footer Here</footer>
+       {/*  <footer className="Footer">Your Footer Here</footer> */}
       </div>
     );
   }

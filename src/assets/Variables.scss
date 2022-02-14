@@ -1,0 +1,17 @@
+$primary: #4361ee; //background color
+$secondary: #ad1fea; //button color
+$tertiaryColor: #e9c46a;
+$highlightColor: #f4a261;
+$supportColor: #e76f51;
+$border: #ded3d3;
+$header: #560bad;
+$background: #f7f8fd;
+$input: #f9f9fa;
+@mixin borderBox {
+  *,
+  *:before:not(i),
+  *:after:not(i),
+  *:not(i) {
+    box-sizing: border-box;
+  }
+}

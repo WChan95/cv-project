@@ -94,9 +94,9 @@ class Experience extends Component {
               );
             })
           : null}
-        <button type="button" className = "addAdditional" onClick={this.handleAdd}>
-          Add additional experience
-        </button>
+        {this.state.active?<button type="button" className = "addAdditional" onClick={this.handleAdd}>
+          + Add Experience
+        </button> : null }
       </div>
     );
   }

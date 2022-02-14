@@ -1,28 +1,67 @@
+@import "./Variables.scss";
 
+@mixin flexCenter($flow: flow) {
+  display: flex;
+  flex-flow: $flow;
+  font-family: sans-serif;
+}
 
+.forms_container {
+  @include flexCenter(column);
+  margin: 20px;
+  padding: 15px;
+  background-color: white;
+  border-radius: 10px;
 
-.forms{
+  .head {
     display: flex;
-    flex-flow: column;
-    margin: 20px;
-    border: solid rgb(172, 164, 164) 1px;
-    padding: 20px;
+    justify-content: space-between;
+  }
+  .show_hide {
+    background: none;
+    border: none;
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
+  .deleteContainer {
+    @include flexCenter();
+    justify-content: flex-end;
+    .delete {
+      background: none;
+      border: none;
+      border-radius: 20px;
+      &:hover {
+        cursor: pointer;
+        background-color: rgb(223, 97, 97, 0.5);
+        color: white;
+      }
+    }
+  }
+
+  .addAdditional {
+    border: none;
+    background-color: $secondary;
+    color: white;
     border-radius: 5px;
-    input{
-        margin-bottom: 5px;
+    padding: 10px;
+    font-weight: bold;
+    font-size: 16px;
+    &:hover {
+      cursor: pointer;
     }
-    span{
-        font-size: 14px;
+  }
+  .forms {
+    @include flexCenter(column);
+    input {
+      margin: 10px 0;
+      border: none;
+      border-radius: 5px;
+      padding: 10px;
+      background-color: $input;
     }
-
-    label{
-        display: flex;
-        flex-flow: column;
-        margin-top: 5px;
-        margin-bottom: 5px;
+    button {
     }
-
-    input{
-        height: 30px;
-    }
+  }
 }

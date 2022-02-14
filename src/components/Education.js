@@ -92,9 +92,9 @@ class Education extends Component {
               );
             })
           : null}
-        <button className="addAdditional" type="button" onClick={this.handleAdd}>
-          Add Education
-        </button>
+        {this.state.active ?<button className="addAdditional" type="button" onClick={this.handleAdd}>
+          + Add Education
+        </button> : null }
       </div>
     );
   }

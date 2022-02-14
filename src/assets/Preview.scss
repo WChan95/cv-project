@@ -11,9 +11,11 @@ li {
 
 .preview {
   margin: 20px;
-  border: solid black 1px;
-  width: 8.5in;
-  //height: 11.5in;
+  border-radius: 20px;
+  max-width: (8.5in, 8.5in);
+  background-color: white;
+  max-height: (11.5in);
+  overflow: hidden;
 
   .cvHeader {
     @extend .sections;
