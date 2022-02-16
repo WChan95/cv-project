@@ -1,12 +1,27 @@
-$primary: #4361ee; //background color
-$secondary: #ad1fea; //button color
+
+$secondary: #ad1fea; //misc color
+$secondary-hover: #9018d6;
 $tertiaryColor: #e9c46a;
-$highlightColor: #f4a261;
-$supportColor: #e76f51;
+
 $border: #ded3d3;
 $header: #560bad;
 $background: #f7f8fd;
 $input: #f9f9fa;
+
+$add: #5bba6f;
+$add-hover: #3fa34d;
+
+$clear: #e7ad99;
+$clear-hover:#ce796b;
+
+$preview: #6579d3; //background color
+$preview-hover: #4862d8;
+$download: #f4a261;
+$download-hover: #e76f51;
+
+$box_shadow1: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+$preview_shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+
 @mixin borderBox {
   *,
   *:before:not(i),
@@ -14,4 +29,24 @@ $input: #f9f9fa;
   *:not(i) {
     box-sizing: border-box;
   }
+}
+
+@mixin defaultButton($secondary: $secondary, $secondary-hover: $secondary-hover){
+  border: none;
+  background-color: $secondary;
+  color: white;
+  border-radius: 5px;
+  padding: 10px;
+  font-weight: bold;
+  font-size: 16px;
+  &:hover {
+    cursor: pointer;
+    background-color: $secondary-hover;
+  }
+}
+
+@mixin flexCenter($flow: flow) {
+  display: flex;
+  flex-flow: $flow;
+  font-family: sans-serif;
 }

@@ -1,10 +1,6 @@
 @import "./Variables.scss";
 
-@mixin flexCenter($flow: flow) {
-  display: flex;
-  flex-flow: $flow;
-  font-family: sans-serif;
-}
+
 
 .forms_container {
   @include flexCenter(column);
@@ -12,10 +8,21 @@
   padding: 15px;
   background-color: white;
   border-radius: 10px;
-
+  box-shadow: $box_shadow1;
   .head {
     display: flex;
     justify-content: space-between;
+    .icon_name{
+      @include flexCenter();
+      align-items: baseline;
+      span{
+        margin-left: 16px;
+      }
+      svg{
+        height: 16px;
+
+      }
+    }
   }
   .show_hide {
     background: none;
@@ -40,26 +47,32 @@
     }
   }
 
-  .addAdditional {
-    border: none;
-    background-color: $secondary;
-    color: white;
-    border-radius: 5px;
-    padding: 10px;
-    font-weight: bold;
-    font-size: 16px;
-    &:hover {
-      cursor: pointer;
+  .button-wrapper{
+    display: flex;
+    justify-content: flex-end;
+    .addAdditional {
+      @include defaultButton($add, $add-hover);
+      margin: 0px 5px;
+      
+    }
+
+    .clear{
+      @extend .addAdditional;
+      @include defaultButton($clear, $clear-hover);
     }
   }
   .forms {
     @include flexCenter(column);
-    input {
+    input, textarea {
       margin: 10px 0;
       border: none;
       border-radius: 5px;
       padding: 10px;
       background-color: $input;
+    }
+
+    textarea{
+      height: 300px;
     }
     button {
     }

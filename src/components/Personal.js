@@ -5,6 +5,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import { faAnglesDown } from "@fortawesome/free-solid-svg-icons";
 import { faAnglesRight } from "@fortawesome/free-solid-svg-icons";
+import { faUser } from "@fortawesome/free-solid-svg-icons";
 
 class Personal extends Component {
   constructor(props) {
@@ -23,8 +24,11 @@ class Personal extends Component {
   render() {
     return (
       <div className="forms_container">
-        <div className = "head">
-          <h3>Personal Information</h3>
+        <div className="head">
+          <h3 className ="icon_name">
+            <FontAwesomeIcon icon={faUser} />
+            <span>Personal Information</span>
+          </h3>
           <button type="Button" onClick={this.handleActive} className="show_hide">
             {this.state.active ? (
               <FontAwesomeIcon icon={faAnglesDown} />
@@ -35,7 +39,7 @@ class Personal extends Component {
         </div>
 
         {this.state.active ? (
-          <form className = "forms">
+          <form className="forms">
             <input
               type="text"
               placeholder="First Name"

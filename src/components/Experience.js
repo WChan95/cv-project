@@ -3,10 +3,9 @@ import React, { Component } from "react";
 import uniqid from "uniqid";
 import { clearAllInputs } from "./utils/Utils";
 import "../assets/Forms.scss";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-import { faAnglesDown } from "@fortawesome/free-solid-svg-icons";
-import { faAnglesRight } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faAnglesDown, faBriefcase, faAnglesRight } from "@fortawesome/free-solid-svg-icons";
 
 class Experience extends Component {
   constructor(props) {
@@ -32,7 +31,10 @@ class Experience extends Component {
     return (
       <div className="forms_container">
         <div className="head">
-          <h3>Experience</h3>
+          <h3 className="icon_name">
+            <FontAwesomeIcon icon={faBriefcase} />
+            <span>Experience</span>
+          </h3>
           <button type="Button" onClick={this.handleActive} className="show_hide">
             {this.state.active ? (
               <FontAwesomeIcon icon={faAnglesDown} />
@@ -82,7 +84,7 @@ class Experience extends Component {
                   <input type="date" name="endDate" onChange={this.handleChange} id={index.id} />
 
                   <label>Role Description</label>
-                  <input type = "text"
+                  <textarea
                     placeholder="Did x job to create y data in z environment"
                     name="roleDescription"
                     onChange={this.handleChange}
@@ -94,9 +96,11 @@ class Experience extends Component {
               );
             })
           : null}
-        {this.state.active?<button type="button" className = "addAdditional" onClick={this.handleAdd}>
-          + Add Experience
-        </button> : null }
+        {this.state.active ? (
+          <button type="button" className="addAdditional" onClick={this.handleAdd}>
+            + Add Experience
+          </button>
+        ) : null}
       </div>
     );
   }

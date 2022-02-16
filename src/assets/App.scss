@@ -1,12 +1,24 @@
 @import "./Variables.scss";
 
+@include borderBox();
 
-
+body {
+  background-color: $background;
+}
 .app {
-  height: 100vh;
+  height: 100%;
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  margin-top: 20px;
   display: grid;
+  grid-template-columns: 20% 20% 20% 20% 20%;
+  grid-auto-rows: 50px;
+
+  /*   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
-  /*   grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr; */
+  grid-template-rows: .3fr 1fr 1fr 1fr 1fr 1fr 1fr;
+  grid-template-rows: min-content;
   gap: 0px 0px;
   grid-template-areas:
     "Header Header Header Header"
@@ -15,9 +27,8 @@
     "Form CV CV CV"
     "Form CV CV CV"
     "Form CV CV CV"
-    "Footer Footer Footer Footer";
+    "Footer Footer Footer Footer"; */
 
-  background-color: $background;
   .Header {
     grid-area: Header;
 
@@ -32,8 +43,19 @@
   }
   .Form {
     grid-area: Form;
+    grid-column-start: 1;
+    grid-column-end: 3;
+    grid-row-start: 2;
   }
-  .CV {
+  .Preview {
     grid-area: CV;
+    grid-column-start: 3;
+    grid-column-end: 6;
+    grid-row: 2/10;
+    margin-top: 22px;
+    /*     grid-column-end: 6; */
+    .CV_Wrapper {
+      /* overflow: scroll; */
+    }
   }
 }

@@ -1,21 +1,25 @@
+@import "./Variables.scss";
 *,
 *:before:not(i),
 *:after:not(i),
 *:not(i) {
   box-sizing: border-box;
 }
-
 li {
   list-style: none;
 }
 
-.preview {
+.cv{
   margin: 20px;
-  border-radius: 20px;
-  max-width: (8.5in, 8.5in);
+  border-radius: 10px;
   background-color: white;
-  max-height: (11.5in);
-  overflow: hidden;
+  padding: 0.5in;
+  font-size: 11px;
+  box-shadow: $preview_shadow;
+  width: 816px;
+  max-width: 816px;
+  height: 1056px;
+  max-height: 1056px;
 
   .cvHeader {
     @extend .sections;
@@ -64,7 +68,7 @@ li {
     }
     .job_company {
       font-weight: bold;
-      font-size: 16px;
+      font-size: 11px;
     }
     .job_Role {
       list-style: disc;
@@ -77,7 +81,7 @@ li {
       font-weight: normal;
       font-size: 16px;
     }
-    span{
+    span {
       font-size: 12px;
     }
   }
@@ -91,7 +95,7 @@ li {
 }
 
 .sectionHeadings {
-  font-size: 20px;
+  font-size: 14px;
   font-weight: bold;
   width: 100%;
   border-bottom: black 1px solid;

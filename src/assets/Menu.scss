@@ -1,0 +1,54 @@
+@import "./Variables.scss";
+
+.menu {
+  margin-right: 20px;
+  border-radius: 20px;
+  @include flexCenter();
+  @include borderBox();
+
+  justify-content: flex-end;
+
+  .print_Preview {
+    @include defaultButton($preview, $preview-hover);
+    @extend .button_menu;
+  }
+  .download_PDF {
+    @include defaultButton($download, $download-hover);
+    @extend .button_menu;
+  }
+}
+
+.form_menu {
+  margin-left: 20px;
+  border-radius: 20px;
+  @include flexCenter();
+  @include borderBox();
+
+  .generate_Example {
+    @include defaultButton(#6c757d, #495057);
+    @extend .button_menu2;
+  }
+
+  .clear_All {
+    @include defaultButton(#ced4da, #e5989b);
+    @extend .button_menu2;
+    color: black;
+    &:hover{
+        color: white;
+    }
+  }
+}
+
+.button_menu {
+  width: 18%;
+  font-size: 12px;
+  margin-left: 10px;
+  padding: 5px;
+}
+
+.button_menu2 {
+  width: 30%;
+  font-size: 12px;
+  margin-right: 10px;
+  padding: 5px;
+}

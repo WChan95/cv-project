@@ -19,7 +19,7 @@ class Preview extends Component {
     const skills = this.props.technicalSkills;
 
     return (
-      <div className="preview">
+      <div className="cv">
         <div className="cvHeader">
           <h3>{`${this.props.personal.firstName} ${this.props.personal.lastName}`}</h3>
           <div>

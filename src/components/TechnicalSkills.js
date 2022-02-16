@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import "../assets/Forms.scss";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faAnglesDown } from "@fortawesome/free-solid-svg-icons";
+import { faAnglesDown, faWrench } from "@fortawesome/free-solid-svg-icons";
 import { faAnglesRight } from "@fortawesome/free-solid-svg-icons";
 
 class TechnicalSkills extends Component {
@@ -21,7 +21,10 @@ class TechnicalSkills extends Component {
     return (
       <div className="forms_container">
         <div className="head">
-          <h3>Technical Skills</h3>
+          <h3 className="icon_name">
+            <FontAwesomeIcon icon = {faWrench} />
+            <span>Technical Skills</span>
+          </h3>
           <button type="Button" onClick={this.handleActive} className="show_hide">
             {this.state.active ? (
               <FontAwesomeIcon icon={faAnglesDown} />

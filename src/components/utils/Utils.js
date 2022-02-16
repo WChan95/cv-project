@@ -12,3 +12,4 @@ export function handleTextChange(event){
   export const clearAllInputs = () =>{
     Array.from(document.querySelectorAll("input")).forEach((input) => (input.value = ""));
   }
+

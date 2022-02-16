@@ -2,7 +2,7 @@ import React, { Component, useState } from "react";
 import { clearAllInputs } from "./utils/Utils";
 import uniqid from "uniqid";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-
+import { faGraduationCap } from "@fortawesome/free-solid-svg-icons";
 import { faAnglesDown } from "@fortawesome/free-solid-svg-icons";
 import { faAnglesRight } from "@fortawesome/free-solid-svg-icons";
 
@@ -39,7 +39,10 @@ class Education extends Component {
     return (
       <div className="forms_container">
         <div className="head">
-          <h3>Education</h3>
+          <h3 className="icon_name">
+            <FontAwesomeIcon icon={faGraduationCap} />
+            <span>Education</span>
+          </h3>
           <button type="Button" onClick={this.handleActive} className="show_hide">
             {this.state.active ? (
               <FontAwesomeIcon icon={faAnglesDown} />
@@ -92,9 +95,17 @@ class Education extends Component {
               );
             })
           : null}
-        {this.state.active ?<button className="addAdditional" type="button" onClick={this.handleAdd}>
-          + Add Education
-        </button> : null }
+        {this.state.active ? (
+          <div className="button-wrapper">
+            {" "}
+            <button className="addAdditional" type="button" onClick={this.handleAdd}>
+              + Add Education
+            </button>
+{/*             <button className="clear" type="button" onClick={this.handleAdd}>
+              Clear
+            </button> */}
+          </div>
+        ) : null}
       </div>
     );
   }
