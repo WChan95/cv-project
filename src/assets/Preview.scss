@@ -1,16 +1,13 @@
 @import "./Variables.scss";
-*,
-*:before:not(i),
-*:after:not(i),
-*:not(i) {
-  box-sizing: border-box;
-}
+
 li {
   list-style: none;
 }
+/* @include borderBox(); */
 
-.cv{
-  margin: 20px;
+.cv {
+  
+  border: solid black 1px;
   border-radius: 10px;
   background-color: white;
   padding: 0.5in;
@@ -26,6 +23,10 @@ li {
     display: flex;
     flex-flow: column;
     align-items: center;
+    padding: 0;
+    h3{
+      margin-top: 0px;
+    }
   }
 
   .cvEducation {
@@ -77,6 +78,8 @@ li {
   }
 
   .cvTechnicalSkills {
+    @extend .sections;
+    width: 100%;
     li {
       font-weight: normal;
       font-size: 16px;
@@ -88,10 +91,13 @@ li {
 }
 
 .sections {
-  margin-left: 20px;
+  /* margin-left: 20px;
   margin-right: 20px;
   margin-bottom: 10px;
-  padding: 0px 10px;
+  padding: 0px 10px; */
+  padding: 0;
+  margin: 0;
+  width: 100%;
 }
 
 .sectionHeadings {

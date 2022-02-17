@@ -73,6 +73,7 @@ class Education extends Component {
                       name="schoolName"
                       id={school.id}
                       onChange={this.handleChange}
+                      value={school.schoolName}
                     />
                     <label>Date of Graduation</label>
                     <input
@@ -81,6 +82,7 @@ class Education extends Component {
                       name="dateGraduated"
                       id={school.id}
                       onChange={this.handleChange}
+                      value={school.dateGraduated}
                     />
                     <label>Degree Earned</label>
                     <input
@@ -89,6 +91,7 @@ class Education extends Component {
                       name="degree"
                       id={school.id}
                       onChange={this.handleChange}
+                      value={school.degree}
                     />
                   </form>
                 </div>
@@ -101,7 +104,7 @@ class Education extends Component {
             <button className="addAdditional" type="button" onClick={this.handleAdd}>
               + Add Education
             </button>
-{/*             <button className="clear" type="button" onClick={this.handleAdd}>
+            {/*             <button className="clear" type="button" onClick={this.handleAdd}>
               Clear
             </button> */}
           </div>

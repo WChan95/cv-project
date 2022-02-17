@@ -41,6 +41,8 @@ class TechnicalSkills extends Component {
               name="languages"
               placeholder="Java,JavaScript, Python, Go, and etc."
               onChange={this.handleChange}
+              value={this.props.languages}
+              
             />
 
             <label>Frameworks/Libraries</label>
@@ -49,6 +51,7 @@ class TechnicalSkills extends Component {
               name="frameworks_libraries"
               placeholder="React.js SpringBoot, Flask, vue.js"
               onChange={this.handleChange}
+              value={this.props.frameworks_libraries}
             />
             <label>Tools</label>
             <input
@@ -56,6 +59,7 @@ class TechnicalSkills extends Component {
               name="tools"
               placeholder="git, babel, Webpack, Docker, AWS"
               onChange={this.handleChange}
+              value={this.props.tools}
             />
           </form>
         ) : null}

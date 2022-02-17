@@ -25,7 +25,7 @@ class Personal extends Component {
     return (
       <div className="forms_container">
         <div className="head">
-          <h3 className ="icon_name">
+          <h3 className="icon_name">
             <FontAwesomeIcon icon={faUser} />
             <span>Personal Information</span>
           </h3>
@@ -45,21 +45,30 @@ class Personal extends Component {
               placeholder="First Name"
               name="firstName"
               onChange={this.handleChange}
+              value={this.props.firstName}
             />
             <input
               type="text"
               placeholder="Last Name"
               name="lastName"
               onChange={this.handleChange}
+              value={this.props.lastName}
             />
-            <input type="text" placeholder="Email" name="email" onChange={this.handleChange} />
+            <input
+              type="text"
+              placeholder="Email"
+              name="email"
+              onChange={this.handleChange}
+              value={this.props.email}
+            />
             <input
               type="text"
               placeholder="Phone-Number"
               name="phone"
               onChange={this.handleChange}
+              value={this.props.phone}
             />
-            <input type="text" placeholder="Address" name="address" onChange={this.handleChange} />
+            <input type="text" placeholder="Address" name="address" onChange={this.handleChange} value={this.props.address} />
           </form>
         ) : null}
       </div>

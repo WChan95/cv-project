@@ -59,6 +59,7 @@ class Experience extends Component {
                     name="jobTitle"
                     onChange={this.handleChange}
                     id={index.id}
+                    value={index.jobTitle}
                   />
                   <label>Company</label>
                   <input
@@ -67,6 +68,7 @@ class Experience extends Component {
                     name="company"
                     onChange={this.handleChange}
                     id={index.id}
+                    value={index.company}
                   />
 
                   <label>City, State </label>
@@ -76,6 +78,7 @@ class Experience extends Component {
                     name="location"
                     onChange={this.handleChange}
                     id={index.id}
+                    value={index.location}
                   />
                   {/* For Start and end date forms */}
                   <label>Start Date</label>
@@ -89,6 +92,7 @@ class Experience extends Component {
                     name="roleDescription"
                     onChange={this.handleChange}
                     id={index.id}
+                    value={index.roleDescription}
                   />
 
                   <p>Note, use ";" to divide highlights in role experience</p>

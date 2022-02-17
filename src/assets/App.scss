@@ -46,6 +46,9 @@ body {
     grid-column-start: 1;
     grid-column-end: 3;
     grid-row-start: 2;
+/*     height: 100vh;
+    max-height:100vh; */
+    //overflow: scroll;
   }
   .Preview {
     grid-area: CV;
@@ -55,7 +58,7 @@ body {
     margin-top: 22px;
     /*     grid-column-end: 6; */
     .CV_Wrapper {
-      /* overflow: scroll; */
+       overflow: scroll; 
     }
   }
 }

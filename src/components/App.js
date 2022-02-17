@@ -1,4 +1,4 @@
-import React, { Component, useState } from "react";
+import React, { Component, useRef, useState } from "react";
 
 import "../assets/App.scss";
 import reactDom from "react-dom";
@@ -10,6 +10,7 @@ import TechnicalSkills from "./TechnicalSkills";
 import Preview from "./Preview";
 import Menu from "./Menu";
 import FormOptions from "./FormOptions";
+
 
 class App extends Component {
   constructor(props) {
@@ -54,6 +55,7 @@ class App extends Component {
       },
     };
   }
+
 
   handleActive = (event) => {
     console.log(event.target);
@@ -216,7 +218,7 @@ class App extends Component {
   };
 
   clearAll = (event) => {
-    this.setState( {
+    this.setState({
       personal: {
         firstName: "",
         lastName: "",
@@ -253,8 +255,8 @@ class App extends Component {
         frameworks_libraries: "",
         tools: "",
       },
-    })
-  }
+    });
+  };
 
   render() {
     return (
@@ -265,7 +267,11 @@ class App extends Component {
 
         <div className="Form">
           <FormOptions genExample={this.generateExample} clear={this.clearAll} />
-          <Personal personalChange={this.handlePersonal} toggleActive={this.handleActive} />
+          <Personal
+            personalChange={this.handlePersonal}
+            toggleActive={this.handleActive}
+            {...this.state.personal}
+          />
           <Education
             eduAdd={this.handleAddEducation}
             eduChange={this.handleEducation}
@@ -278,7 +284,7 @@ class App extends Component {
             expAdd={this.handleAddExperience}
             {...this.state.experience}
           />
-          <TechnicalSkills technicalChange={this.handleTechnical} />
+          <TechnicalSkills technicalChange={this.handleTechnical} {...this.state.technicalSkills} />
         </div>
 
         <div className="Preview">
