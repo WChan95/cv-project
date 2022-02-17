@@ -29,7 +29,9 @@ class Education extends Component {
   };
 
   handleActive = (event) => {
-    this.setState({ active: !this.state.active });
+    /* this.setState({ active: !this.state.active }); */
+    /* console.log(event.target); */
+    this.props.handleActive(event)
   };
   //lets start with a thought experiment (or rather a streamline of thoughts)
   //when initialzing, the state is initially empty
@@ -43,15 +45,15 @@ class Education extends Component {
             <FontAwesomeIcon icon={faGraduationCap} />
             <span>Education</span>
           </h3>
-          <button type="Button" onClick={this.handleActive} className="show_hide">
-            {this.state.active ? (
+          <button type="Button" onClick={this.handleActive} name="education" className="show_hide">
+            {this.props.isActive ? (
               <FontAwesomeIcon icon={faAnglesDown} />
             ) : (
               <FontAwesomeIcon icon={faAnglesRight} />
             )}
           </button>
         </div>
-        {this.state.active
+        {this.props.isActive
           ? schools.map((school) => {
               return (
                 <div>

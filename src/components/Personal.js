@@ -18,7 +18,7 @@ class Personal extends Component {
   };
 
   handleActive = (event) => {
-    this.setState({ active: !this.state.active });
+    this.props.handleActive(event)
   };
 
   render() {
@@ -29,8 +29,8 @@ class Personal extends Component {
             <FontAwesomeIcon icon={faUser} />
             <span>Personal Information</span>
           </h3>
-          <button type="Button" onClick={this.handleActive} className="show_hide">
-            {this.state.active ? (
+          <button type="Button" onClick={this.handleActive} name="personal" className="show_hide">
+            {this.props.isActive ? (
               <FontAwesomeIcon icon={faAnglesDown} />
             ) : (
               <FontAwesomeIcon icon={faAnglesRight} />
@@ -38,7 +38,7 @@ class Personal extends Component {
           </button>
         </div>
 
-        {this.state.active ? (
+        {this.props.isActive ? (
           <form className="forms">
             <input
               type="text"
@@ -68,7 +68,13 @@ class Personal extends Component {
               onChange={this.handleChange}
               value={this.props.phone}
             />
-            <input type="text" placeholder="Address" name="address" onChange={this.handleChange} value={this.props.address} />
+            <input
+              type="text"
+              placeholder="Address"
+              name="address"
+              onChange={this.handleChange}
+              value={this.props.address}
+            />
           </form>
         ) : null}
       </div>

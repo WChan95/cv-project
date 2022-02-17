@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import "../assets/Menu.scss"
+import "../assets/Menu.scss";
 
 class FormOptions extends Component {
   constructor(props) {
@@ -7,20 +7,28 @@ class FormOptions extends Component {
   }
 
   generateExample = (event) => {
-      this.props.genExample(event)
-  }
+    this.props.genExample(event);
+  };
 
   clearAll = (event) => {
     this.props.clear(event);
+  };
+
+  showHide=(event) => {
+    this.props.showHide(event);
   }
+
   render() {
     return (
       <div className="form_menu">
         <button type="button" onClick={this.generateExample} className="generate_Example">
           Generate Example
         </button>
-        <button type="button" className="clear_All" onClick = {this.clearAll}>
+        <button type="button" className="clear_All" onClick={this.clearAll}>
           Clear All
+        </button>
+        <button type="button" className="clear_All" onClick = {this.showHide}>
+          Show/Hide All
         </button>
       </div>
     );

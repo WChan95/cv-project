@@ -25,7 +25,7 @@ class Experience extends Component {
   };
 
   handleActive = (event) => {
-    this.setState({ active: !this.state.active });
+    this.props.handleActive(event)
   };
   render() {
     return (
@@ -35,15 +35,15 @@ class Experience extends Component {
             <FontAwesomeIcon icon={faBriefcase} />
             <span>Experience</span>
           </h3>
-          <button type="Button" onClick={this.handleActive} className="show_hide">
-            {this.state.active ? (
+          <button type="Button" onClick={this.handleActive} name="experience" className="show_hide">
+            {this.props.isActive ? (
               <FontAwesomeIcon icon={faAnglesDown} />
             ) : (
               <FontAwesomeIcon icon={faAnglesRight} />
             )}
           </button>
         </div>
-        {this.state.active
+        {this.props.isActive
           ? this.props.jobs.map((index) => {
               return (
                 <form className="forms">
@@ -101,9 +101,15 @@ class Experience extends Component {
             })
           : null}
         {this.state.active ? (
-          <button type="button" className="addAdditional" onClick={this.handleAdd}>
-            + Add Experience
-          </button>
+             <div className="button-wrapper">
+             {" "}
+             <button className="addAdditional" type="button" onClick={this.handleAdd}>
+               + Add Experience
+             </button>
+             {/*             <button className="clear" type="button" onClick={this.handleAdd}>
+               Clear
+             </button> */}
+           </div>
         ) : null}
       </div>
     );

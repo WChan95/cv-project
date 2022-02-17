@@ -11,7 +11,6 @@ import Preview from "./Preview";
 import Menu from "./Menu";
 import FormOptions from "./FormOptions";
 
-
 class App extends Component {
   constructor(props) {
     //This is just a temporary initial state to begin formatting the resume
@@ -23,7 +22,7 @@ class App extends Component {
         email: "yourEmail@calstate.edu",
         phone: "714-555-2020",
         address: "0120 Your Street, Your City, [CA 99999",
-        isActive: "",
+        isActive: true,
       },
       education: {
         schools: [
@@ -34,6 +33,7 @@ class App extends Component {
             id: uniqid(),
           },
         ],
+        isActive: true,
       },
       experience: {
         jobs: [
@@ -47,18 +47,26 @@ class App extends Component {
             roleDescription: "",
           },
         ],
+        isActive: true,
       },
       technicalSkills: {
         languages: "JavaScript",
         frameworks_libraries: "React.js",
         tools: "git, babel, Webpack",
       },
+      isActive: true,
     };
   }
 
-
   handleActive = (event) => {
-    console.log(event.target);
+    const name = event.currentTarget.name;
+
+    this.setState((prevState) => ({
+      [name]: {
+        ...prevState[name],
+        isActive: !prevState[name].isActive,
+      },
+    }));
   };
   //schoolName: "California State University, Fullerston", degree:"Bachelor of Science, Computer Science", dateGraduated:"May 2010"
   handlePersonal = (event) => {
@@ -258,6 +266,26 @@ class App extends Component {
     });
   };
 
+  showHide = (event) => {
+
+    this.setState((prevState) => ({
+      personal: {
+        ...prevState.personal,
+        isActive: !prevState.personal.isActive,
+      },
+      experience:{
+        ...prevState.experience, isActive: !prevState.experience.isActive
+      },
+      education:{
+        ...prevState.education, isActive: !prevState.education.isActive
+      },
+      technicalSkills:{
+        ...prevState.technicalSkills, isActive: !prevState.technicalSkills.isActive
+      }
+    }));
+
+  }
+
   render() {
     return (
       <div className="app">
@@ -266,25 +294,31 @@ class App extends Component {
         </header> */}
 
         <div className="Form">
-          <FormOptions genExample={this.generateExample} clear={this.clearAll} />
+          <FormOptions genExample={this.generateExample} clear={this.clearAll} showHide={this.showHide} {...this.state}/>
           <Personal
             personalChange={this.handlePersonal}
-            toggleActive={this.handleActive}
+            handleActive={this.handleActive}
             {...this.state.personal}
           />
           <Education
             eduAdd={this.handleAddEducation}
             eduChange={this.handleEducation}
             eduDelete={this.handleDeleteEducation}
+            handleActive={this.handleActive}
             {...this.state.education}
           />
           <Experience
             expDelete={this.handleDeleteExperience}
             expChange={this.handleExperience}
             expAdd={this.handleAddExperience}
+            handleActive={this.handleActive}
             {...this.state.experience}
           />
-          <TechnicalSkills technicalChange={this.handleTechnical} {...this.state.technicalSkills} />
+          <TechnicalSkills
+            technicalChange={this.handleTechnical}
+            handleActive={this.handleActive}
+            {...this.state.technicalSkills}
+          />
         </div>
 
         <div className="Preview">
