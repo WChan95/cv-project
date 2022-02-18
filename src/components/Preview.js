@@ -3,10 +3,11 @@ import React, { Component } from "react";
 import uniqid from "uniqid";
 import "../assets/Preview.scss";
 
-class Preview extends Component {
+ export class Preview extends Component {
   constructor(props) {
     super(props);
     this.state = { ...this.props };
+    
   }
   handleDelete = (event) => {
     this.props.handleDelete(event);
@@ -110,4 +111,4 @@ function TechnicalSkillsList(props) {
     </ul>
   );
 }
-export default Preview;
+

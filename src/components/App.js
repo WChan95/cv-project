@@ -7,15 +7,19 @@ import Personal from "./Personal";
 import Education from "./Education";
 import Experience from "./Experience";
 import TechnicalSkills from "./TechnicalSkills";
-import Preview from "./Preview";
+import { Preview } from "./Preview";
 import Menu from "./Menu";
 import FormOptions from "./FormOptions";
+import ReactToPrint, { useReactToPrint } from "react-to-print";
 
 class App extends Component {
+  componentRef = null;
   constructor(props) {
     //This is just a temporary initial state to begin formatting the resume
     super(props);
     this.state = {
+      isLoading: false,
+      text: "old boring text",
       personal: {
         firstName: "First Name",
         lastName: "Last Name",
@@ -267,24 +271,60 @@ class App extends Component {
   };
 
   showHide = (event) => {
-
     this.setState((prevState) => ({
       personal: {
         ...prevState.personal,
         isActive: !prevState.personal.isActive,
       },
-      experience:{
-        ...prevState.experience, isActive: !prevState.experience.isActive
+      experience: {
+        ...prevState.experience,
+        isActive: !prevState.experience.isActive,
       },
-      education:{
-        ...prevState.education, isActive: !prevState.education.isActive
+      education: {
+        ...prevState.education,
+        isActive: !prevState.education.isActive,
       },
-      technicalSkills:{
-        ...prevState.technicalSkills, isActive: !prevState.technicalSkills.isActive
-      }
+      technicalSkills: {
+        ...prevState.technicalSkills,
+        isActive: !prevState.technicalSkills.isActive,
+      },
     }));
+  };
 
-  }
+  handleAfterPrint = () => {
+    console.log("`onAfterPrint` called"); // tslint:disable-line no-console
+  };
+
+  handleBeforePrint = () => {
+    console.log("`onBeforePrint` called"); // tslint:disable-line no-console
+  };
+
+  handleOnBeforeGetContent = () => {
+    console.log("`onBeforeGetContent` called"); // tslint:disable-line no-console
+    this.setState({ text: "Loading new text...", isLoading: true });
+
+    return new Promise((resolve) => {
+      setTimeout(() => {
+        this.setState({ text: "New, Updated Text!", isLoading: false }, resolve);
+      }, 2000);
+    });
+  };
+  reactToPrintTrigger = () => {
+    return (
+      <button type="button" className="download_PDF">
+        Download PDF
+      </button>
+    );
+  };
+
+
+  setComponentRef = (ref) => {
+    this.componentRef = ref;
+  };
+
+  reactToPrintContent = () => {
+    return this.componentRef;
+  };
 
   render() {
     return (
@@ -294,7 +334,12 @@ class App extends Component {
         </header> */}
 
         <div className="Form">
-          <FormOptions genExample={this.generateExample} clear={this.clearAll} showHide={this.showHide} {...this.state}/>
+          <FormOptions
+            genExample={this.generateExample}
+            clear={this.clearAll}
+            showHide={this.showHide}
+            {...this.state}
+          />
           <Personal
             personalChange={this.handlePersonal}
             handleActive={this.handleActive}
@@ -323,9 +368,19 @@ class App extends Component {
 
         <div className="Preview">
           <div className="CV_Wrapper">
-            <Preview {...this.state} handleDelete={this.handleDelete} />
+            <ReactToPrint
+              content={this.reactToPrintContent}
+              documentTitle="AwesomeFileName"
+              onAfterPrint={this.handleAfterPrint}
+              onBeforeGetContent={this.handleOnBeforeGetContent}
+              onBeforePrint={this.handleBeforePrint}
+              removeAfterPrint
+              trigger={this.reactToPrintTrigger}
+            />
+            {this.state.isLoading && <p className="indicator">onBeforeGetContent: Loading...</p>}
+            <Preview ref={this.setComponentRef} text={this.state.text} {...this.state} handleDelete={this.handleDelete} />
           </div>
-          <Menu />
+          <Menu {...this.state} />
         </div>
 
         {/*  <footer className="Footer">Your Footer Here</footer> */}
