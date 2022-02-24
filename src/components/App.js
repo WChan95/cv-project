@@ -271,24 +271,50 @@ class App extends Component {
   };
 
   showHide = (event) => {
-    this.setState((prevState) => ({
-      personal: {
-        ...prevState.personal,
-        isActive: !prevState.personal.isActive,
-      },
-      experience: {
-        ...prevState.experience,
-        isActive: !prevState.experience.isActive,
-      },
-      education: {
-        ...prevState.education,
-        isActive: !prevState.education.isActive,
-      },
-      technicalSkills: {
-        ...prevState.technicalSkills,
-        isActive: !prevState.technicalSkills.isActive,
-      },
-    }));
+    if (
+      this.state.personal.isActive === true ||
+      this.state.education.isActive === true ||
+      this.state.experience.isActive === true ||
+      this.state.technicalSkills.isActive === true
+    ) {
+      this.setState((prevState) => ({
+        personal: {
+          ...prevState.personal,
+          isActive: false,
+        },
+        experience: {
+          ...prevState.experience,
+          isActive: false,
+        },
+        education: {
+          ...prevState.education,
+          isActive: false,
+        },
+        technicalSkills: {
+          ...prevState.technicalSkills,
+          isActive: false,
+        },
+      }));
+    } else {
+      this.setState((prevState) => ({
+        personal: {
+          ...prevState.personal,
+          isActive: true,
+        },
+        experience: {
+          ...prevState.experience,
+          isActive: true,
+        },
+        education: {
+          ...prevState.education,
+          isActive: true,
+        },
+        technicalSkills: {
+          ...prevState.technicalSkills,
+          isActive: true,
+        },
+      }));
+    }
   };
 
   handleAfterPrint = () => {
@@ -369,30 +395,29 @@ class App extends Component {
           <div className="CV_Wrapper">
             {/* {this.state.isLoading && <p className="indicator">onBeforeGetContent: Loading...</p>} */}
             <div>
-            <Preview
-              ref={this.setComponentRef}
-              text={this.state.text}
-              {...this.state}
-              handleDelete={this.handleDelete}
-            />
-            </div>
-
-          </div>
-          <div className="menu">
-              {/* <Menu {...this.state} /> */}
-{/*               <button type="button" className="print_Preview">
-                Preview
-              </button> */}
-              <ReactToPrint
-                content={this.reactToPrintContent}
-                documentTitle="AwesomeFileName"
-                onAfterPrint={this.handleAfterPrint}
-                onBeforeGetContent={this.handleOnBeforeGetContent}
-                onBeforePrint={this.handleBeforePrint}
-                removeAfterPrint
-                trigger={this.reactToPrintTrigger}
+              <Preview
+                ref={this.setComponentRef}
+                text={this.state.text}
+                {...this.state}
+                handleDelete={this.handleDelete}
               />
             </div>
+          </div>
+          <div className="menu">
+            {/* <Menu {...this.state} /> */}
+            {/*               <button type="button" className="print_Preview">
+                Preview
+              </button> */}
+            <ReactToPrint
+              content={this.reactToPrintContent}
+              documentTitle="AwesomeFileName"
+              onAfterPrint={this.handleAfterPrint}
+              onBeforeGetContent={this.handleOnBeforeGetContent}
+              onBeforePrint={this.handleBeforePrint}
+              removeAfterPrint
+              trigger={this.reactToPrintTrigger}
+            />
+          </div>
         </div>
 
         {/*  <footer className="Footer">Your Footer Here</footer> */}

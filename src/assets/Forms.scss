@@ -78,6 +78,14 @@
       background-color: $input;
     }
 
+    .currentRole{
+      display: flex;
+      align-items: center;
+      input{
+        margin-left: 1em;
+      }
+    }
+
     textarea{
       height: 300px;
     }

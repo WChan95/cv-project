@@ -25,7 +25,7 @@ class Experience extends Component {
   };
 
   handleActive = (event) => {
-    this.props.handleActive(event)
+    this.props.handleActive(event);
   };
   render() {
     return (
@@ -81,10 +81,22 @@ class Experience extends Component {
                     value={index.location}
                   />
                   {/* For Start and end date forms */}
-                  <label>Start Date</label>
-                  <input type="date" name="startDate" onChange={this.handleChange} id={index.id} />
+                  <div></div>
+{/*                   <div className="currentRole">
+                    <span>Current Role?</span>
+                    <input
+                      type="checkbox"
+                      value="Present"
+                      id={index.id}
+                      name="endDate"
+                      onChange={this.handleChange}
+                    />
+                  </div> */}
                   <label>End Date</label>
-                  <input type="date" name="endDate" onChange={this.handleChange} id={index.id} />
+                  <input type="text" name="endDate" onChange={this.handleChange} id={index.id} value={index.endDate} />
+
+                  <label>Start Date</label>
+                  <input type="text" name="startDate" onChange={this.handleChange} id={index.id} value={index.startDate} />
 
                   <label>Role Description</label>
                   <textarea
@@ -101,15 +113,15 @@ class Experience extends Component {
             })
           : null}
         {this.state.active ? (
-             <div className="button-wrapper">
-             {" "}
-             <button className="addAdditional" type="button" onClick={this.handleAdd}>
-               + Add Experience
-             </button>
-             {/*             <button className="clear" type="button" onClick={this.handleAdd}>
+          <div className="button-wrapper">
+            {" "}
+            <button className="addAdditional" type="button" onClick={this.handleAdd}>
+              + Add Experience
+            </button>
+            {/*             <button className="clear" type="button" onClick={this.handleAdd}>
                Clear
              </button> */}
-           </div>
+          </div>
         ) : null}
       </div>
     );
