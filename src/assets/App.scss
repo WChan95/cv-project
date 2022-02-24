@@ -59,6 +59,7 @@ body {
     /*     grid-column-end: 6; */
     .CV_Wrapper {
        overflow: scroll; 
+       box-shadow: $preview_shadow;
     }
   }
 }

@@ -16,7 +16,7 @@ class Menu extends React.PureComponent {
 
   render() {
     return (
-      <div className="menu">
+      <div>
 
  {/*        <Preview ref={el => (this.compoentRef = el)} /> */}
         <button type="button" className="print_Preview">

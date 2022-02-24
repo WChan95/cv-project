@@ -3,11 +3,10 @@ import React, { Component } from "react";
 import uniqid from "uniqid";
 import "../assets/Preview.scss";
 
- export class Preview extends Component {
+export class Preview extends Component {
   constructor(props) {
     super(props);
     this.state = { ...this.props };
-    
   }
   handleDelete = (event) => {
     this.props.handleDelete(event);
@@ -94,7 +93,7 @@ function WorkList(props) {
 function TechnicalSkillsList(props) {
   const { skills } = props;
   return (
-    <ul className="cvTechnicalSkill">
+    <ul className="cvTechnicalSkills">
       <div className="sectionHeadings">
         <span>Technical Skills</span>
       </div>
@@ -106,9 +105,10 @@ function TechnicalSkillsList(props) {
         <li>
           <span>Frameworks: {skills.frameworks_libraries}</span>
         </li>
-        <li>Tools: {skills.tools}</li>
+        <li>
+          <span>Tools: {skills.tools}</span>
+        </li>
       </ul>
     </ul>
   );
 }
-

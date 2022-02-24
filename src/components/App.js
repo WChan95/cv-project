@@ -8,7 +8,7 @@ import Education from "./Education";
 import Experience from "./Experience";
 import TechnicalSkills from "./TechnicalSkills";
 import { Preview } from "./Preview";
-import Menu from "./Menu";
+/* import Menu from "./Menu"; */
 import FormOptions from "./FormOptions";
 import ReactToPrint, { useReactToPrint } from "react-to-print";
 
@@ -317,7 +317,6 @@ class App extends Component {
     );
   };
 
-
   setComponentRef = (ref) => {
     this.componentRef = ref;
   };
@@ -368,19 +367,32 @@ class App extends Component {
 
         <div className="Preview">
           <div className="CV_Wrapper">
-            <ReactToPrint
-              content={this.reactToPrintContent}
-              documentTitle="AwesomeFileName"
-              onAfterPrint={this.handleAfterPrint}
-              onBeforeGetContent={this.handleOnBeforeGetContent}
-              onBeforePrint={this.handleBeforePrint}
-              removeAfterPrint
-              trigger={this.reactToPrintTrigger}
+            {/* {this.state.isLoading && <p className="indicator">onBeforeGetContent: Loading...</p>} */}
+            <div>
+            <Preview
+              ref={this.setComponentRef}
+              text={this.state.text}
+              {...this.state}
+              handleDelete={this.handleDelete}
             />
-            {this.state.isLoading && <p className="indicator">onBeforeGetContent: Loading...</p>}
-            <Preview ref={this.setComponentRef} text={this.state.text} {...this.state} handleDelete={this.handleDelete} />
+            </div>
+
           </div>
-          <Menu {...this.state} />
+          <div className="menu">
+              {/* <Menu {...this.state} /> */}
+{/*               <button type="button" className="print_Preview">
+                Preview
+              </button> */}
+              <ReactToPrint
+                content={this.reactToPrintContent}
+                documentTitle="AwesomeFileName"
+                onAfterPrint={this.handleAfterPrint}
+                onBeforeGetContent={this.handleOnBeforeGetContent}
+                onBeforePrint={this.handleBeforePrint}
+                removeAfterPrint
+                trigger={this.reactToPrintTrigger}
+              />
+            </div>
         </div>
 
         {/*  <footer className="Footer">Your Footer Here</footer> */}

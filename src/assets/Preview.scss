@@ -7,12 +7,12 @@ li {
 
 .cv {
   //single-line spacing defined as 120% of largest font-size?
-  border: solid black 1px;
+
   border-radius: 10px;
   background-color: white;
   padding: 0.5in;
-  font-size: 11px;
-  box-shadow: $preview_shadow;
+  font-size: 1em;
+  /* box-shadow: $preview_shadow; */
   width: 816px;
   max-width: 816px;
   height: 1056px;
@@ -24,7 +24,7 @@ li {
     flex-flow: column;
     align-items: center;
     padding: 0;
-    h3{
+    h3 {
       margin-top: 0px;
     }
   }
@@ -69,23 +69,29 @@ li {
     }
     .job_company {
       font-weight: bold;
-      font-size: 11px;
     }
     .job_Role {
       list-style: disc;
       margin-left: 0;
+    }
+    ul{
+      li{
+        
+      }
     }
   }
 
   .cvTechnicalSkills {
     @extend .sections;
     width: 100%;
+
     li {
       font-weight: normal;
-      font-size: 16px;
-    }
-    span {
-      font-size: 12px;
+      font-size: 1em;
+      list-style: disc;
+      span {
+        font-size: 1em;
+      }
     }
   }
 }
@@ -98,11 +104,13 @@ li {
   padding: 0;
   margin: 0;
   width: 100%;
+  margin-bottom: .5em;
 }
 
 .sectionHeadings {
-  font-size: 14px;
+  font-size: 1.1em;
   font-weight: bold;
   width: 100%;
   border-bottom: black 1px solid;
+  margin-bottom: .7em;
 }
